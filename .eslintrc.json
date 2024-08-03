@@ -1,0 +1,7 @@
+{
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "no-console": "error", // or "error" if you want it to be treated as an error
+    "indent": ["error", 2] // Enforce 2-space indent
+  }
+}
