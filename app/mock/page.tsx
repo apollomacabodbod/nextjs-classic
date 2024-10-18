@@ -1,16 +1,23 @@
-import getData from "@/components/demo";
+"use client"
 
-export default async function  Page() {
+import AddData from "@/components/addData";
 
-  const data = await getData() 
+export default function Getdata(){
 
-  const { first_name } = data 
+  const formData = new FormData();
+
+  formData.append("product", "Macbook Air")
 
 
   return (
-    <div>
-      <h1>Firstname: {first_name}</h1>
-      <p></p>
-    </div>
-  );
+    <>
+
+      <p>test</p>
+      <button className="border border-[#50B498] px-6" onClick={(e) => AddData(formData)} >click me</button>
+    
+    
+    </>
+
+
+  )
 }

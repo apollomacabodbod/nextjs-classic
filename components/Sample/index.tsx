@@ -14,7 +14,7 @@ export default function ProductForm() {
     product: "",
     price: 0,
   });
-  const [message, setMessage] = useState<string>("");
+  const [message, setMessage] = useState("");
   const [products, setProducts] = useState<Product[]>([]); // State to store all products
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null); // State to store a selected product
 
@@ -56,7 +56,7 @@ export default function ProductForm() {
   // Handle input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData(formData => ({ ...formData, [name]: value }));
   };
 
   // Handle form submission for update
@@ -64,6 +64,13 @@ export default function ProductForm() {
     e.preventDefault();
 
     const { id, product, price } = formData;
+
+    // Group formData into a productInfo object
+    const productInfo = {
+      product,
+      price,
+    } as Product
+
 
     if (!id || !product || price <= 0) {
       setMessage("Please provide valid product information.");
@@ -77,7 +84,7 @@ export default function ProductForm() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ product, price }),
+          body: JSON.stringify(productInfo),
         }
       );
 
@@ -256,11 +263,10 @@ export default function ProductForm() {
       {selectedProduct && (
         <div className="mt-8">
           <h2>Selected Product</h2>
-          <div className="border p-4 rounded">
+          <div className="border border-[#50B498] p-4 rounded">
             {Object.keys(selectedProduct).map((key) => (
               <div key={key}>
-                <strong>{key}: </strong>{" "}
-                {selectedProduct[key as keyof Product]}
+                <p>{key}: {selectedProduct[key as keyof Product]}</p>
               </div>
             ))}
           </div>
