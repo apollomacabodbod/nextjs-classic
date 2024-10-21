@@ -1,23 +1,17 @@
-"use client"
-
-import AddData from "@/components/addData";
-
-export default function Getdata(){
-
-  const formData = new FormData();
-
-  formData.append("product", "Macbook Air")
 
 
-  return (
-    <>
+import getData from "@/components/demo"
 
-      <p>test</p>
-      <button className="border border-[#50B498] px-6" onClick={(e) => AddData(formData)} >click me</button>
+export default async function MockData(){
+
+
+  const data = await getData()
+
+  return (<>
+
+    <p>Date: {data?.datetime?.toLocaleString()}</p>
     
     
-    </>
-
-
-  )
+  </>)
 }
+

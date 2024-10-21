@@ -20,7 +20,7 @@
 }
 
 export default async function getData(): Promise<Welcome> {
-  const res = await fetch('https://worldtimeapi.org/api/timezone/America/Vancouver', { cache: 'no-store' })
+  const res = await fetch('https://worldtimeapi.org/api/timezone/America/New_York')
   const data = res.json()
   console.log("test..")
   return data;
